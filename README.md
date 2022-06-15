@@ -32,7 +32,7 @@ Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda beta 
 * Arduino dosyasındaki kodları Arduinoya yükle.
 * ayarlar.py kısmını doldur.
 * Gerekli [PYTHON](https://www.python.org) kütüphanelerini kur.
-* Sistemi çalıştır ve ``jesus diye seslen``.
+* Sistemi çalıştır ve ``jesus``diye seslen.
 
 # Bilgilendirme
 Arduino kullanıyorsanız arduino dosyasındaki kodları kendi devrenize göre ayarlayın.
