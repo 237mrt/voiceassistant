@@ -1,4 +1,5 @@
 from cProfile import run
+from email.quoprimime import quote
 from playsound import playsound
 from gtts import gTTS
 import speech_recognition as sr
@@ -6,22 +7,24 @@ import os
 import time
 from datetime import date, datetime
 import random
-from random import choice
 from pydub import AudioSegment
 import webbrowser
+import platform
+import requests
+from googletrans import Translator
+import serial
+from message import exitMessage,openMessage,helloMessage,timeMessage,todayMessage,jokes
+from ayarlar import port
+
+# Options
+ser = serial.Serial(port, 9600)
 
 r = sr.Recognizer()
 today = time.strftime("%A")
 _time = datetime.now().strftime("%H:%M")
 today.capitalize()
-exitMessage = ["Görüşürüz", "Kendine iyi bak", "Elveda", "Kapandım"]
-exitMessage = random.choice(exitMessage)
-helloMessage = ["Selam", "Hoşgeldin", "Merhaba", "Sanada Merhaba"]
-helloMessage = random.choice(helloMessage)
-timeMessage = ["Saat şuan", "Saati söylüyorum", "Saat", "Hemen bakıyorum saat"]
-timeMessage = random.choice(timeMessage)
-todayMessage = ["Bugün günlerden", "Bugün", "Günlerden"]
-todayMessage = random.choice(todayMessage)
+
+# Options End
 
 def record(ask=False):
     with sr.Microphone() as source:
@@ -37,54 +40,75 @@ def record(ask=False):
             print("[Asistan] : Sistem çalışmıyor")
         return voice
 
-
 def response(voice):
     if "merhaba" in voice:
         speak(helloMessage)
     
-    if "kapan" in voice or "görüşürüz" in voice or "baybay" in voice:
+    elif "kapan" in voice or "görüşürüz" in voice or "baybay" in voice:
         speak(exitMessage)
         exit()
 
-    if "gün" in voice or "hangi gündeyiz" in voice or "bugün ne" in voice:
+    elif "gün" in voice or "hangi gündeyiz" in voice or "bugün ne" in voice:
         if today == "Monday":
             print("Pazartesi")
-            t = "Pazartesi"
+            j = "Pazartesi"
         elif today == "Tuesday":
             print("Salı")
-            t = "Salı"
+            j = "Salı"
         elif today == "Wednesday":
             print("Çarşamba")
-            t = "Çarşamba"
+            j = "Çarşamba"
         elif today == "Thursday":
             print("Perşembe")
-            t = "Perşembe"
+            j = "Perşembe"
         elif today == "Friday":
             print("Cuma")
-            t = "Cuma"
+            j = "Cuma"
         elif today == "Saturday":
             print("Cumartesi")
-            t = "Cumartesi"
+            j = "Cumartesi"
         elif today == "Sunday":
             print("Pazar")
-            t = "Pazar"
-
-        speak(todayMessage + t)
-    if "saat" in voice or "saat kaç" in voice or "saati söylermisin" in voice or "saati söyle" in voice:
+            j = "Pazar"
+        speak(todayMessage + j)
+        
+    elif "saat" in voice or "saat kaç" in voice or "saati söylermisin" in voice or "saati söyle" in voice:
         speak(timeMessage + _time)
       
-    if "araştır" in voice or "google da ara":
+    elif "araştır" in voice or "google da ara" in voice:
         speak("Ne aramamı istersin?")
         search = record()
         url = "https://www.google.com/search?q={}".format(search)
         webbrowser.get().open(url)
         speak("{} içi Google'da bulabildiklerimi listeliyorum.".format(search))
     
+    elif "işletim sistemi" in voice:
+        sistem = platform.system()
+        speak("Mevcut işletim sistemin" + sistem)
+        
+    elif "işlemci" in voice:
+        islemci = platform.processor()
+        nesil = platform.release()
+        speak(nesil + "nesil" + islemci + "ye sahipsin.") 
+    
+    elif "şaka" in voice or "şaka yap" in voice or "güldür" in voice:
+        speak(jokes) 
+    
+    elif "ışığı aç" in voice or "ışıkları aç" in voice or "ışıklar" in voice:
+        speak('Işığı açıyorum')
+        ser.write(b'H')
+        speak("Işık başarıyla açıldı")
+    
+    elif "ışığı kapat" in voice:
+        speak("Işığı kapatıyorum")
+        ser.write(b'L')
+        speak("Işığı kapattım")
     
 def speak(string):
     tts = gTTS(text=string, lang="tr", slow=False)
-    j = random.randint(1,100)
+    j = random.randint(1000,20000)
     file = "answer"+str(j)+".mp3"
+    #file = "answer.mp3"
     tts.save(file)
     playsound(file)
     os.remove(file)
@@ -98,8 +122,7 @@ def test(wake):
             print(wake.capitalize())
             response(voice)
 
-
-speak("Selam Kullanıcı")
+speak(openMessage)
 
 while True:
     wake = record()
@@ -107,3 +130,4 @@ while True:
         wake = wake.lower()
         print(wake.capitalize())
         test(wake)
+        
