@@ -2,6 +2,15 @@
 Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda beta aşamasındadır daha komutlar eklenip sistem optimize edilecektir.
 
 # Yenilikler
+* 16.06.2022
+* Yeni komutlar eklendi.
+* Asistan hızlandırıldı.
+* Mesajlar ayrı bir dosyaya aktarıldı.
+* Ayarları kolaylaştırmak için ayarlar.py dosyası eklendi.
+ * Yeni Komutlar.
+    * Şarkı oynat
+    * Wikipedia
+
 * 15.06.2022 
 * pyserial kütürhanesiyle arduino bağlantısı kuruldu.
 * Ses algılama biraz daha geliştirildi.
@@ -23,6 +32,8 @@ Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda beta 
 ```İşetim sistemi```
 ```İşlemci```
 ```Işık aç / Kapat```
+```Wikipedia```
+```Şarkı Oynat```
 
 # Kurulum
 * Bilgisayarınızda [PYTHON](https://www.python.org) yoksa kur.
@@ -32,7 +43,7 @@ Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda beta 
 * Arduino dosyasındaki kodları Arduinoya yükle.
 * ayarlar.py kısmını doldur.
 * Gerekli [PYTHON](https://www.python.org) kütüphanelerini kur.
-* Sistemi çalıştır ve ``jesus``diye seslen.
+* Sistemi çalıştır ve ``jesus diye seslen``.
 
 # Bilgilendirme
 Arduino kullanıyorsanız arduino dosyasındaki kodları kendi devrenize göre ayarlayın.
@@ -54,4 +65,5 @@ Arduino kullanıyorsanız arduino dosyasındaki kodları kendi devrenize göre a
 ```googletrans```
 ```serial```
 ```platform```
+```pywhatkit```
 
