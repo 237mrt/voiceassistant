@@ -2,7 +2,7 @@
 Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda beta aşamasındadır daha komutlar eklenip sistem optimize edilecektir.
 
 # Yenilikler
-   # 16.06.2022
+*  16.06.2022
 * Yeni komutlar eklendi.
 * Asistan hızlandırıldı.
 * Mesajlar ayrı bir dosyaya aktarıldı.
@@ -11,7 +11,7 @@ Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda beta 
     * Şarkı oynat
     * Wikipedia
 
-   # 15.06.2022 
+*  15.06.2022 
 * pyserial kütürhanesiyle arduino bağlantısı kuruldu.
 * Ses algılama biraz daha geliştirildi.
 * Yeni komutlar eklendi.
