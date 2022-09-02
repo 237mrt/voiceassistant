@@ -1,3 +1,4 @@
+from distutils.cmd import Command
 import urllib.request
 import json
 from attr import s
@@ -12,15 +13,14 @@ import pywhatkit
 from ayarlar import port
 import speech_recognition as sr
 
-from message import exitMessage,openMessage,helloMessage,timeMessage,todayMessage,jokes
-from options import today,_time,r,nesil,sistem,port,islemci
+from message import spotifyMessage,closeLightMessage,openLightMessage,wikiMessage,exitMessage,songPlayMessage,uJokeMessage,whatTimeMessage,searchMessage,timeMessage,todayMessage,jokes,shutDownMessage,dayMessage
+from options import today,_time,r,nesil,sistem,port,islemci,ser
 
 class JesuCommands():
     
     def __init__(self,insound):
         self.sound = insound.lower()
         self.audioBlock = self.sound
-        self.commands = ["merhaba","kapan","görüşürüz","git","gün","saat","google","işletim sistemi","işlemci","şaka","şarkı","wikipedia","ışık aç","ışık kapat"]
         
     def record(ask=False):
         with sr.Microphone() as source:
@@ -44,8 +44,7 @@ class JesuCommands():
         playsound(file)
         os.remove(file)
         
-    def welcome(self):
-        self.speak("Selam")
+    
     
     def exit(self):
         self.speak(exitMessage)
@@ -94,7 +93,7 @@ class JesuCommands():
     def islemci(self):
         self.speak(nesil + "nesil" + islemci + "ye sahipsin.")  
        
-    def playSong(self):
+    def playSongs(self):
         self.speak("Hangi şarkıyı çalmamı istersin.")
         song = self.record()
         self.speak("{} şarkısını oynatıyorum".format(song))
@@ -110,58 +109,81 @@ class JesuCommands():
 
 
 
-    #def openLight(self):
-    #    self.speak('Işığı açıyorum')
-    #    ser.write(b'H')
-    #    self.speak("Işık başarıyla açıldı")
+    def openLight(self):
+        self.speak('Işığı açıyorum')
+        ser.write(b'H')
+        self.speak("Işık başarıyla açıldı")
 
-    #def closeLight(self):
-    #    self.speak('Işığı kapatıyorum')
-    #    ser.write(b'H')
-    #    self.speak("Işık başarıyla kapatıldı")
-
-
+    def closeLight(self):
+        self.speak('Işığı kapatıyorum')
+        ser.write(b'H')
+        self.speak("Işık başarıyla kapatıldı")
 
 
+   
 
-    def commandFind(self):
-        for command in self.commands:
-            if command in self.sound:
-                self.commandStart(command)
-            
-    def commandStart(self,command):
-        if command == "merhaba":
-            self.welcome()
-            
-        elif command == "kapan" or command == "git" or command == "görüşürüz":
-            self.exit()
-            
-        elif command == "gün":
-            self.todays()
-            
-        elif command == "saat":
-            self.times()
-            
-        elif command == "google":
-            self.google()
-            
-        elif command == "işletim sistemi":
-            self.isletimsistem()
+
+    # Command Create
+    def shutDown(self):
+        for kapan in shutDownMessage:
+            if kapan in self.sound:
+                self.exit()
+                
+    def today(self):
+        for gün in dayMessage:
+            if gün in self.sound:
+                self.todays()
+
+    def whatTime(self):
+        for saat in whatTimeMessage:
+            if saat in self.sound:
+                self.times()
+    
+    def searchGoogle(self):
+        for ara in searchMessage:
+            if ara in self.sound:
+                self.google()
+    
+    def uJokes(self):
+        for saka in uJokeMessage:
+            if saka in self.sound:
+                self.jokes()
+                
+    def playSong(self):
+        for sarki in songPlayMessage:
+            if sarki in self.sound:
+                self.playSongs()
+    
+    def wiki(self):
+        for wiki in wikiMessage:
+            if wiki in self.sound:
+                self.wikipedia()
+    
+   
+    
+    def openLights(self):
+        for isikac in openLightMessage:
+            if isikac in self.sound:
+                self.openLight()
+
+    def closeLights(self):
+        for isikkap in closeLightMessage:
+            if isikkap in self.sound:
+                self.closeLight()
+       
         
-        elif command == "işlemci":
-            self.islemci()
+        
+    # Start Commands 
+    def commandFind(self):
+        self.shutDown() # Sistemi kapatır
+        self.today()    # Hangi günde oldugumuzu söyler
+        self.whatTime() # Saatin kaç olduğunu söyler
+        self.searchGoogle() # Google da arama yapar
+        self.uJokes() # Şaka yapar
+        self.playSong() # İstediğiniz şarkıyı oynatır
+        self.wiki # Wikipedia da arama yapar
+        #self.openLights() # Au sisteminize bağlı ışıkları açar
+        #self.closeLights() # Au sisteminize bağlı ışıkları kapar
+        
             
-        elif command == "şaka":
-            self.jokes()
-            
-        elif command == "şarkı":
-            self.playSong()
-            
-        elif command == "wikipedia":
-            self.wikipedia()
-            
-        elif command == "ışık aç":
-            self.openLight()
-            
-        elif command == "ışık kapat":
-            self.closeLight()
+       
