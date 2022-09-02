@@ -2,12 +2,17 @@
 Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda version 1.0.0 aşamasındadır daha komutlar eklenip sistem optimize edilecektir.
 
 # Yenilikler
-17.06.2022 / Version 1.0.0
+### 02..09.2022 / Version 1.0.5
+* Komut algılama sistemi tamamen değiştirildi.
+* Kurulumu kolaylaştırmak için requirements.txt dosyası kuruldu.
+* Ve bir kaç ufak değişiklik yapıldı.
+
+### 17.06.2022 / Version 1.0.0
 * Ses sistemi tamamen değiştirildi.
 * Ses optimizesi yapıldı.
 * Aktifleştirme kaldırıldı.
 
-* 16.06.2022
+### 16.06.2022
 * Yeni komutlar eklendi.
 * Asistan hızlandırıldı.
 * Mesajlar ayrı bir dosyaya aktarıldı.
@@ -16,7 +21,7 @@ Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda versi
     * Şarkı oynat
     * Wikipedia
 
-* 15.06.2022 
+### 15.06.2022 
 * pyserial kütürhanesiyle arduino bağlantısı kuruldu.
 * Ses algılama biraz daha geliştirildi.
 * Yeni komutlar eklendi.
@@ -47,7 +52,8 @@ Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda versi
 * Projeyi Masaüstüne çıkart.
 * Arduino dosyasındaki kodları Arduinoya yükle.
 * ayarlar.py kısmını doldur.
-* Gerekli [PYTHON](https://www.python.org) kütüphanelerini kur.
+* pip install requirements.txt yazarak gerekli [PYTHON](https://www.python.org) kütüphanelerini kur.
+* jesu.bat ile sistemi çalışır hale getir.
 * Sistemi çalıştır ve ``jesus diye seslen``. [KALDIRILDI]
 
 # Bilgilendirme
@@ -55,20 +61,5 @@ Arduino kullanıyorsanız arduino dosyasındaki kodları kendi devrenize göre a
 
 [FFMPEG](https://ffmpeg.org) Kurmayı bilmiyorsanız [BURADAN](https://www.youtube.com/watch?v=TLJdeJv8bLA) nasıl kurulduğunu öğrenebilirsiniz.
 
-# Gerekli Python Kütüphaneleri
-```cProfile```
-```playsound```
-```gtts```
-```speech_recognition```
-```os```
-```time```
-```datetime```
-```random```
-```pydub```
-```webbrowser```
-```requests```
-```googletrans```
-```serial```
-```platform```
-```pywhatkit```
+
 
