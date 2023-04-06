@@ -2,7 +2,7 @@
 Python kullanarak yapmış olduğum sesli asistan uygulamasıdır. Şuanda version 1.0.0 aşamasındadır daha komutlar eklenip sistem optimize edilecektir.
 
 # Yenilikler
-### 02..09.2022 / Version 1.0.5
+### 02.09.2022 / Version 1.0.5
 * Komut algılama sistemi tamamen değiştirildi.
 * Kurulumu kolaylaştırmak için requirements.txt dosyası kuruldu.
 * Ve bir kaç ufak değişiklik yapıldı.
